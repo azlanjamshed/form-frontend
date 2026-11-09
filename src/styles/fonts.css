@@ -1,0 +1,66 @@
+/* ==========================================================================
+   VerifyFlow Design System - Typography Tokens
+   File: src/styles/fonts.css
+   ========================================================================== */
+
+/* 1. Google Fonts Import (Inter: 400, 500, 600, 700) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ------------------------------------------------------------------------
+     Font Families
+     ------------------------------------------------------------------------ */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* ------------------------------------------------------------------------
+     Font Weights
+     ------------------------------------------------------------------------ */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ------------------------------------------------------------------------
+     Heading Sizes
+     ------------------------------------------------------------------------ */
+  --font-size-h1: 2rem;         /* 32px */
+  --font-size-h2: 1.5rem;       /* 24px */
+  --font-size-h3: 1.25rem;      /* 20px */
+  --font-size-h4: 1.125rem;     /* 18px */
+
+  /* ------------------------------------------------------------------------
+     Subheading Sizes
+     ------------------------------------------------------------------------ */
+  --font-size-subheading: 1.125rem;    /* 18px */
+  --font-size-subheading-sm: 1rem;     /* 16px */
+
+  /* ------------------------------------------------------------------------
+     Body Text Sizes
+     ------------------------------------------------------------------------ */
+  --font-size-body: 1rem;              /* 16px (Base) */
+  --font-size-body-sm: 0.875rem;       /* 14px */
+
+  /* ------------------------------------------------------------------------
+     Small Text Sizes
+     ------------------------------------------------------------------------ */
+  --font-size-small: 0.75rem;          /* 12px */
+  --font-size-caption: 0.6875rem;      /* 11px */
+
+  /* ------------------------------------------------------------------------
+     Line Heights
+     ------------------------------------------------------------------------ */
+  --line-height-tight: 1.25;           /* Headings */
+  --line-height-snug: 1.375;          /* Subheadings / Compact UI */
+  --line-height-normal: 1.5;          /* Body text */
+  --line-height-relaxed: 1.625;        /* Long-form readable text */
+
+  /* ------------------------------------------------------------------------
+     Letter Spacing
+     ------------------------------------------------------------------------ */
+  --letter-spacing-tight: -0.025em;    /* Headings */
+  --letter-spacing-normal: 0em;        /* Standard body */
+  --letter-spacing-wide: 0.025em;      /* Subheadings / Badges */
+  --letter-spacing-wider: 0.05em;      /* All-caps / Overlines */
+}
+

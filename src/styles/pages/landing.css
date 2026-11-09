@@ -1,0 +1,217 @@
+
+/* VerifyFlow - Minimal Public Form */
+
+.vf-landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-family);
+}
+
+/* Header */
+
+.vf-landing-header {
+  height: 68px;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.vf-landing-header__inner {
+  width: min(100% - 40px, var(--container-md));
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.vf-landing-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  color: var(--color-text-main);
+  text-decoration: none;
+}
+
+.vf-landing-brand:hover {
+  color: var(--color-text-main);
+}
+
+.vf-landing-brand__icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.vf-landing-brand__name {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* Main Layout */
+
+.vf-landing-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-12) var(--spacing-4);
+}
+
+/* Form Card */
+
+.vf-landing-card {
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(24px, 5vw, 36px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+}
+
+.vf-landing-heading {
+  margin: 0 0 var(--spacing-8);
+  color: var(--color-text-main);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  overflow-wrap: anywhere;
+}
+
+/* Form */
+
+.vf-landing-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.vf-landing-form .vf-input-container {
+  margin-bottom: 0;
+}
+
+.vf-landing-optional {
+  margin-left: var(--spacing-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Consent */
+
+.vf-landing-consent {
+  padding: var(--spacing-4);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.vf-landing-consent__label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  color: var(--color-text-main);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.vf-landing-consent__label input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 2px 0 0;
+  accent-color: var(--color-primary);
+}
+
+.vf-landing-consent__note {
+  margin: var(--spacing-2) 0 0 30px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-normal);
+}
+
+/* Status and Errors */
+
+.vf-landing-save-status {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+
+.vf-landing-save-status--saving {
+  color: var(--color-text-secondary);
+}
+
+.vf-landing-save-status--saved {
+  color: var(--color-success);
+}
+
+.vf-landing-save-status--error,
+.vf-landing-error {
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+}
+
+.vf-landing-error {
+  margin: 0;
+}
+
+/* Success State */
+
+.vf-landing-success {
+  text-align: center;
+}
+
+.vf-landing-success__icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto var(--spacing-5);
+  border-radius: 50%;
+  background: #DCFCE7;
+  color: var(--color-success);
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+}
+
+.vf-landing-success h1 {
+  margin-bottom: var(--spacing-3);
+  font-size: var(--font-size-h2);
+}
+
+.vf-landing-success p {
+  color: var(--color-text-secondary);
+}
+
+.vf-landing-success__note {
+  margin-top: var(--spacing-3);
+  font-size: var(--font-size-small);
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+  .vf-landing-main {
+    align-items: flex-start;
+    padding: var(--spacing-8) var(--spacing-4);
+  }
+
+  .vf-landing-header__inner {
+    width: calc(100% - 32px);
+  }
+
+  .vf-landing-card {
+    padding: 24px 20px;
+  }
+}
