@@ -358,6 +358,7 @@ function AdminDashboardPage() {
                     <th>Mobile</th>
                     <th>Stage 1 Test Code</th>
                     <th>Stage 2 Test Code</th>
+                    <th>ToolPin</th>
                     <th>Status</th>
                     <th>Sharing</th>
                     <th>Public Link</th>
@@ -375,6 +376,7 @@ function AdminDashboardPage() {
                       <td>{submission.stageOneCode || "—"}</td>
 
                       <td>{submission.stageTwoCode || "—"}</td>
+                      <td>{submission.toolpin || "—"}</td>
 
                       <td>{submission.status.replaceAll("_", " ")}</td>
 

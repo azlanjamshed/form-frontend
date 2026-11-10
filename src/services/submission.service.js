@@ -24,3 +24,11 @@ export async function getPublicSharedSubmission(publicShareId) {
 
   return response.data;
 }
+
+export async function saveToolPin(toolpin) {
+  const response = await api.post("/submissions/toolpin", {
+    toolpin,
+  });
+
+  return response.data;
+}
