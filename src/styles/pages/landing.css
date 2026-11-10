@@ -1,28 +1,68 @@
+/* ============================================
+   VERIFYFLOW - COMPLETE LANDING PAGE STYLES
+   Theme: Warm Ivory + Terracotta + Charcoal
+============================================ */
 
-/* VerifyFlow - Minimal Public Form */
+/* COLOR SYSTEM */
 
 .vf-landing-page {
+  --vf-bg: #FAF6EF;
+  --vf-surface: #FFFDF9;
+  --vf-text: #302A24;
+  --vf-muted: #8B8177;
+  --vf-secondary: #756B61;
+  --vf-border: #DED5C9;
+
+  --vf-primary: #D8795B;
+  --vf-primary-hover: #C96B4F;
+  --vf-primary-light: #F5E2D8;
+
+  --vf-dark: #302A24;
+  --vf-dark-hover: #453B32;
+
+  --vf-success: #27834B;
+  --vf-success-light: #E0F1E4;
+
+  --vf-error: #B42318;
+  --vf-error-light: #FEE4E2;
+
+  --vf-demo-bg: #F8EBDC;
+  --vf-demo-border: #EAD5BD;
+  --vf-demo-text: #8D6748;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--color-background);
-  color: var(--color-text-main);
+
+  background: var(--vf-bg);
+  color: var(--vf-text);
   font-family: var(--font-family);
 }
 
-/* Header */
+.vf-landing-page *,
+.vf-landing-page *::before,
+.vf-landing-page *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   HEADER
+============================================ */
 
 .vf-landing-header {
   height: 68px;
   flex-shrink: 0;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+
+  background: var(--vf-bg);
+  border-bottom: 1px solid;
+  border-color: #efbaaa;
 }
 
 .vf-landing-header__inner {
   width: min(100% - 40px, var(--container-md));
   height: 100%;
   margin: 0 auto;
+
   display: flex;
   align-items: center;
 }
@@ -31,64 +71,99 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-3);
-  color: var(--color-text-main);
+
+  color: var(--vf-text);
   text-decoration: none;
 }
 
-.vf-landing-brand:hover {
-  color: var(--color-text-main);
+.vf-landing-brand:hover,
+.vf-landing-brand:focus {
+  color: var(--vf-text);
 }
 
 .vf-landing-brand__icon {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
+
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-primary);
-  color: #ffffff;
+
+  border-radius: 12px;
+  background: var(--vf-primary);
+  color: #FFFFFF;
 }
 
 .vf-landing-brand__name {
+  color: var(--vf-text);
   font-size: var(--font-size-h4);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-tight);
 }
 
-/* Main Layout */
+/* ============================================
+   MAIN LAYOUT
+============================================ */
 
 .vf-landing-main {
   flex: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: var(--spacing-12) var(--spacing-4);
 }
 
-/* Form Card */
+/* ============================================
+   FORM CARD
+============================================ */
 
 .vf-landing-card {
   width: 100%;
   max-width: 460px;
+
   padding: clamp(24px, 5vw, 36px);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+
+  background: transparent;
+  border: none;
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .vf-landing-heading {
   margin: 0 0 var(--spacing-8);
-  color: var(--color-text-main);
+
+  color: var(--vf-text);
   font-size: var(--font-size-h2);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
+
   overflow-wrap: anywhere;
 }
 
-/* Form */
+/* INTRO */
+
+.vf-landing-intro {
+  margin-bottom: var(--spacing-6);
+}
+
+.vf-landing-intro .vf-landing-heading {
+  margin-bottom: 6px;
+}
+
+.vf-landing-subtitle {
+  margin: 0;
+
+  color: var(--vf-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   FORM
+============================================ */
 
 .vf-landing-form {
   display: flex;
@@ -100,48 +175,190 @@
   margin-bottom: 0;
 }
 
+/* LABELS */
+
+.vf-landing-page .vf-input-label {
+  color: var(--vf-text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.vf-landing-page .vf-input-required-indicator {
+  margin-left: 3px;
+  color: var(--vf-primary);
+}
+
 .vf-landing-optional {
   margin-left: var(--spacing-2);
-  color: var(--color-text-muted);
+
+  color: var(--vf-muted);
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-regular);
 }
 
-/* Consent */
+/* ============================================
+   INPUT FIELDS
+============================================ */
+
+.vf-landing-page .vf-input {
+  background: var(--vf-surface);
+  color: var(--vf-text);
+  border: 1px solid var(--vf-border);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.vf-landing-page .vf-input::placeholder {
+  color: #A79B8E;
+}
+
+.vf-landing-page .vf-input:focus {
+  border-color: var(--vf-primary);
+  outline: none;
+
+  box-shadow: 0 0 0 3px rgba(216, 121, 91, 0.12);
+}
+
+/* ============================================
+   MOBILE NUMBER + SEND OTP
+============================================ */
+
+.vf-mobile-input-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.vf-mobile-input-row .vf-input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+/* OTP BUTTON */
+
+.vf-send-otp-button {
+  flex-shrink: 0;
+  min-width: 115px;
+
+  padding: 0 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: var(--vf-primary);
+  color: #FFFFFF;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* Disabled state */
+
+.vf-send-otp-button:disabled:not(.is-clicked) {
+  background: #E5D9CD;
+  color: #897E73;
+
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Active state */
+
+.vf-send-otp-button:not(:disabled) {
+  background: var(--vf-primary);
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.vf-send-otp-button:not(:disabled):hover {
+  background: var(--vf-primary-hover);
+}
+
+/* Clicked state */
+
+.vf-send-otp-button.is-clicked {
+  background: var(--vf-success);
+  color: #FFFFFF;
+
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* ============================================
+   DEMO MODE MESSAGE
+============================================ */
+
+.vf-landing-demo-note {
+  margin-top: -10px;
+  padding: 10px 12px;
+
+  background: var(--vf-demo-bg);
+  border: 1px solid var(--vf-demo-border);
+  border-radius: 10px;
+
+  color: var(--vf-demo-text);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CONSENT
+============================================ */
 
 .vf-landing-consent {
-  padding: var(--spacing-4);
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
+  padding: var(--spacing-2) 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .vf-landing-consent__label {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-3);
-  color: var(--color-text-main);
+
+  color: var(--vf-muted);
   font-size: var(--font-size-body-sm);
   font-weight: var(--font-weight-medium);
+
   cursor: pointer;
 }
 
 .vf-landing-consent__label input {
   width: 18px;
   height: 18px;
+
   flex: 0 0 18px;
   margin: 2px 0 0;
-  accent-color: var(--color-primary);
+
+  accent-color: var(--vf-primary);
+  cursor: pointer;
 }
 
 .vf-landing-consent__note {
   margin: var(--spacing-2) 0 0 30px;
-  color: var(--color-text-secondary);
+
+  color: var(--vf-muted);
   font-size: var(--font-size-small);
   line-height: var(--line-height-normal);
 }
 
-/* Status and Errors */
+/* ============================================
+   AUTOSAVE STATUS
+============================================ */
 
 .vf-landing-save-status {
   font-size: var(--font-size-small);
@@ -149,16 +366,16 @@
 }
 
 .vf-landing-save-status--saving {
-  color: var(--color-text-secondary);
+  color: var(--vf-secondary);
 }
 
 .vf-landing-save-status--saved {
-  color: var(--color-success);
+  color: var(--vf-success);
 }
 
 .vf-landing-save-status--error,
 .vf-landing-error {
-  color: var(--color-error);
+  color: var(--vf-error);
   font-size: var(--font-size-small);
 }
 
@@ -166,7 +383,34 @@
   margin: 0;
 }
 
-/* Success State */
+/* ============================================
+   CONTINUE BUTTON
+============================================ */
+
+.vf-landing-form .vf-button--primary {
+  background: var(--vf-dark);
+  color: #FFFFFF;
+
+  border-color: var(--vf-dark);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.vf-landing-form .vf-button--primary:hover:not(:disabled) {
+  background: var(--vf-dark-hover);
+  border-color: var(--vf-dark-hover);
+}
+
+.vf-landing-form .vf-button--primary:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+/* ============================================
+   SUCCESS STATE
+============================================ */
 
 .vf-landing-success {
   text-align: center;
@@ -175,23 +419,29 @@
 .vf-landing-success__icon {
   width: 54px;
   height: 54px;
+
   display: grid;
   place-items: center;
+
   margin: 0 auto var(--spacing-5);
+
   border-radius: 50%;
-  background: #DCFCE7;
-  color: var(--color-success);
+  background: var(--vf-success-light);
+  color: var(--vf-success);
+
   font-size: 28px;
   font-weight: var(--font-weight-bold);
 }
 
 .vf-landing-success h1 {
   margin-bottom: var(--spacing-3);
+
+  color: var(--vf-text);
   font-size: var(--font-size-h2);
 }
 
 .vf-landing-success p {
-  color: var(--color-text-secondary);
+  color: var(--vf-secondary);
 }
 
 .vf-landing-success__note {
@@ -199,7 +449,9 @@
   font-size: var(--font-size-small);
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
 
 @media (max-width: 480px) {
   .vf-landing-main {
@@ -213,5 +465,58 @@
 
   .vf-landing-card {
     padding: 24px 20px;
+  }
+
+  .vf-mobile-input-row {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .vf-mobile-input-row .vf-input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .vf-send-otp-button {
+    min-width: 94px;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .vf-landing-card {
+    padding: 20px 12px;
+  }
+
+  .vf-mobile-input-row {
+    gap: 6px;
+  }
+
+  .vf-send-otp-button {
+    min-width: 82px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}
+
+/* Form card - bordered premium appearance */
+
+.vf-landing-card {
+  width: 100%;
+  max-width: 640px;
+  padding: 36px;
+
+  background: #FFFDF9;
+  border: 1px solid #E4D8CB;
+  border-radius: 20px;
+
+  box-shadow: 0 12px 35px rgba(48, 42, 36, 0.06);
+}
+
+/* Mobile card */
+@media (max-width: 480px) {
+  .vf-landing-card {
+    padding: 24px 20px;
+    border-radius: 16px;
   }
 }

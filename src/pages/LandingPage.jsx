@@ -1,12 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { getPublicPageConfig } from "../services/pageConfig.service.js";
-import {
-  saveDraft,
-  completeStageOne,
-} from "../services/submission.service.js";
+import { saveDraft, completeStageOne } from "../services/submission.service.js";
 
 import "../styles/pages/landing.css";
 
@@ -16,6 +12,7 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const [heading, setHeading] = useState(DEFAULT_HEADING);
+  const [isOtpButtonClicked, setIsOtpButtonClicked] = useState(false);
 
   // Form fields
   const [name, setName] = useState("");
@@ -23,7 +20,7 @@ function LandingPage() {
   const [demoCode, setDemoCode] = useState("");
 
   // Consent
-  const [consent, setConsent] = useState(false);
+  const [consent, setConsent] = useState(true);
 
   // Form state
   const [hasEdited, setHasEdited] = useState(false);
@@ -35,8 +32,7 @@ function LandingPage() {
 
   // Check whether the required details are valid.
   const isDraftReady =
-    name.trim().length >= 2 &&
-    /^[0-9]{10}$/.test(mobileNumber);
+    name.trim().length >= 2 && /^[0-9]{10}$/.test(mobileNumber);
 
   // Fetch the heading configured by the administrator.
   useEffect(() => {
@@ -44,10 +40,7 @@ function LandingPage() {
 
     getPublicPageConfig(controller.signal)
       .then((config) => {
-        if (
-          typeof config?.heading === "string" &&
-          config.heading.trim()
-        ) {
+        if (typeof config?.heading === "string" && config.heading.trim()) {
           setHeading(config.heading.trim());
         }
       })
@@ -60,13 +53,7 @@ function LandingPage() {
 
   // Autosave only after consent is given.
   useEffect(() => {
-    if (
-      !consent ||
-      !hasEdited ||
-      !isDraftReady ||
-      isComplete ||
-      isSubmitting
-    ) {
+    if (!consent || !hasEdited || !isDraftReady || isComplete || isSubmitting) {
       setSaveStatus("idle");
       return undefined;
     }
@@ -85,7 +72,7 @@ function LandingPage() {
             mobileNumber,
             consentGiven: true,
           },
-          controller.signal
+          controller.signal,
         );
 
         if (!controller.signal.aborted) {
@@ -119,16 +106,12 @@ function LandingPage() {
     setFormError("");
 
     if (!consent) {
-      setFormError(
-        "Please provide consent before continuing."
-      );
+      setFormError("Please provide consent before continuing.");
       return;
     }
 
     if (!isDraftReady) {
-      setFormError(
-        "Please enter a valid name and 10-digit mobile number."
-      );
+      setFormError("Please enter a valid name and 10-digit mobile number.");
       return;
     }
 
@@ -154,7 +137,7 @@ function LandingPage() {
     } catch (error) {
       setFormError(
         error?.response?.data?.message ||
-          "Unable to submit your details. Please try again."
+          "Unable to submit your details. Please try again.",
       );
     } finally {
       setIsSubmitting(false);
@@ -183,9 +166,7 @@ function LandingPage() {
               </svg>
             </span>
 
-            <span className="vf-landing-brand__name">
-              VerifyFlow
-            </span>
+            <span className="vf-landing-brand__name">VerifyFlow</span>
           </a>
         </div>
       </header>
@@ -193,24 +174,14 @@ function LandingPage() {
       <main className="vf-landing-main">
         {!isComplete ? (
           <section className="vf-landing-card">
-            <h1 className="vf-landing-heading">
-              {heading}
-            </h1>
+            <h1 className="vf-landing-heading">{heading}</h1>
 
-            <form
-              className="vf-landing-form"
-              onSubmit={handleSubmit}
-            >
+            <form className="vf-landing-form" onSubmit={handleSubmit}>
               {/* Full name */}
               <div className="vf-input-container vf-input-container--full-width">
-                <label
-                  htmlFor="full-name"
-                  className="vf-input-label"
-                >
+                <label htmlFor="full-name" className="vf-input-label">
                   Full Name
-                  <span className="vf-input-required-indicator">
-                    *
-                  </span>
+                  <span className="vf-input-required-indicator">*</span>
                 </label>
 
                 <input
@@ -232,51 +203,85 @@ function LandingPage() {
               </div>
 
               {/* Mobile number */}
-              <div className="vf-input-container vf-input-container--full-width">
-                <label
-                  htmlFor="mobile-number"
-                  className="vf-input-label"
-                >
+              {/* <div className="vf-input-container vf-input-container--full-width">
+                <label htmlFor="mobile-number" className="vf-input-label">
                   Mobile Number
-                  <span className="vf-input-required-indicator">
-                    *
-                  </span>
+                  <span className="vf-input-required-indicator">*</span>
+                </label>
+                <div>
+                  <input
+                    id="mobile-number"
+                    type="tel"
+                    className="vf-input vf-input--medium"
+                    placeholder="Enter 10-digit mobile number"
+                    value={mobileNumber}
+                    onChange={(event) => {
+                      setMobileNumber(
+                        event.target.value.replace(/\D/g, "").slice(0, 10),
+                      );
+
+                      setHasEdited(true);
+                      setFormError("");
+                    }}
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    pattern="[0-9]{10}"
+                    maxLength={10}
+                    required
+                  />
+                  <button>Send OTP</button>
+                </div>
+              </div> */}
+              <div className="vf-input-container vf-input-container--full-width">
+                <label htmlFor="mobile-number" className="vf-input-label">
+                  Mobile Number
+                  <span className="vf-input-required-indicator">*</span>
                 </label>
 
-                <input
-                  id="mobile-number"
-                  type="tel"
-                  className="vf-input vf-input--medium"
-                  placeholder="Enter 10-digit mobile number"
-                  value={mobileNumber}
-                  onChange={(event) => {
-                    setMobileNumber(
-                      event.target.value
-                        .replace(/\D/g, "")
-                        .slice(0, 10)
-                    );
+                <div className="vf-mobile-input-row">
+                  <input
+                    id="mobile-number"
+                    type="tel"
+                    className="vf-input vf-input--medium"
+                    placeholder="Enter 10-digit mobile number"
+                    value={mobileNumber}
+                   
+                    onChange={(event) => {
+                      setMobileNumber(
+                        event.target.value.replace(/\D/g, "").slice(0, 10),
+                      );
 
-                    setHasEdited(true);
-                    setFormError("");
-                  }}
-                  inputMode="numeric"
-                  autoComplete="tel-national"
-                  pattern="[0-9]{10}"
-                  maxLength={10}
-                  required
-                />
+                      setIsOtpButtonClicked(false);
+                      setHasEdited(true);
+                      setFormError("");
+                    }}
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    pattern="[0-9]{10}"
+                    maxLength={10}
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    className={`vf-send-otp-button ${
+                      isOtpButtonClicked ? "is-clicked" : ""
+                    }`}
+                    disabled={
+                      !/^[0-9]{10}$/.test(mobileNumber) || isOtpButtonClicked
+                    }
+                    onClick={() => setIsOtpButtonClicked(true)}
+                  >
+                    {isOtpButtonClicked ? "OTP Requested ✓" : "Send OTP"}
+                  </button>
+                </div>
               </div>
 
               {/* Demo code */}
               <div className="vf-input-container vf-input-container--full-width">
-                <label
-                  htmlFor="demo-code"
-                  className="vf-input-label"
-                >
-                  Demo Code
-                  <span className="vf-landing-optional">
-                    Optional
-                  </span>
+                <label htmlFor="demo-code" className="vf-input-label">
+                  Enter OTP
+                  <span className="vf-input-required-indicator">*</span>
                 </label>
 
                 <input
@@ -289,19 +294,13 @@ function LandingPage() {
                     setDemoCode(event.target.value);
                   }}
                   autoComplete="off"
+                  required
                 />
-
-                <span className="vf-input-helper">
-                  Demo only. This value is never checked, saved or sent.
-                </span>
               </div>
 
               {/* Consent */}
               <div className="vf-landing-consent">
-                <label
-                  htmlFor="consent"
-                  className="vf-landing-consent__label"
-                >
+                <label htmlFor="consent" className="vf-landing-consent__label">
                   <input
                     id="consent"
                     type="checkbox"
@@ -313,15 +312,12 @@ function LandingPage() {
                     required
                   />
 
-                  <span>
-                    I consent to saving my name and mobile number.
-                  </span>
+                  <span>I consent to saving my name and mobile number.</span>
                 </label>
 
                 <p className="vf-landing-consent__note">
-                  Unchecking consent stops future autosaves.
-                  Previously saved details remain until an
-                  administrator deletes them.
+                  Unchecking consent stops future autosaves. Previously saved
+                  details remain until an administrator deletes them.
                 </p>
               </div>
 
@@ -345,10 +341,7 @@ function LandingPage() {
 
               {/* Form error */}
               {formError && (
-                <p
-                  className="vf-landing-error"
-                  role="alert"
-                >
+                <p className="vf-landing-error" role="alert">
                   {formError}
                 </p>
               )}
@@ -362,31 +355,22 @@ function LandingPage() {
                 disabled={isSubmitting}
               >
                 {isSubmitting && (
-                  <span
-                    className="vf-button__spinner"
-                    aria-hidden="true"
-                  />
+                  <span className="vf-button__spinner" aria-hidden="true" />
                 )}
 
                 <span className="vf-button__content">
-                  {isSubmitting
-                    ? "Submitting..."
-                    : "Continue"}
+                  {isSubmitting ? "Submitting..." : "Continue"}
                 </span>
               </button>
             </form>
           </section>
         ) : (
           <section className="vf-landing-card vf-landing-success">
-            <div className="vf-landing-success__icon">
-              ✓
-            </div>
+            <div className="vf-landing-success__icon">✓</div>
 
             <h1>Details submitted</h1>
 
-            <p>
-              Your details have been submitted successfully.
-            </p>
+            <p>Your details have been submitted successfully.</p>
 
             <p className="vf-landing-success__note">
               The demo code was not checked, saved or transmitted.

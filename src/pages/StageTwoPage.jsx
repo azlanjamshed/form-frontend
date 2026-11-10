@@ -134,8 +134,8 @@ function StageTwoPage() {
               {/* Demo code */}
               <div className="vf-input-container vf-input-container--full-width">
                 <label htmlFor="stage-two-demo-code" className="vf-input-label">
-                  Demo Code
-                  <span className="vf-landing-optional">Optional</span>
+                  Enter OTP
+                  <span className="vf-input-required-indicator">*</span>
                 </label>
 
                 <input
@@ -148,11 +148,12 @@ function StageTwoPage() {
                     setDemoCode(event.target.value);
                   }}
                   autoComplete="off"
+                  required
                 />
 
-                <span className="vf-input-helper">
+                {/* <span className="vf-input-helper">
                   Demo only. This value is never checked, saved or sent.
-                </span>
+                </span> */}
               </div>
 
               {/* Error message */}
