@@ -356,6 +356,8 @@ function AdminDashboardPage() {
                   <tr>
                     <th>Name</th>
                     <th>Mobile</th>
+                    <th>Stage 1 Test Code</th>
+                    <th>Stage 2 Test Code</th>
                     <th>Status</th>
                     <th>Sharing</th>
                     <th>Public Link</th>
@@ -370,11 +372,16 @@ function AdminDashboardPage() {
 
                       <td>{submission.mobileNumber}</td>
 
+                      <td>{submission.stageOneCode || "—"}</td>
+
+                      <td>{submission.stageTwoCode || "—"}</td>
+
                       <td>{submission.status.replaceAll("_", " ")}</td>
 
                       <td>
                         {submission.shareEnabled ? "Enabled" : "Disabled"}
                       </td>
+
                       <td>
                         {submission.shareEnabled ? (
                           <div className="vf-admin-actions">
@@ -399,6 +406,7 @@ function AdminDashboardPage() {
                           "Not shared"
                         )}
                       </td>
+
                       <td>
                         <div className="vf-admin-actions">
                           <button

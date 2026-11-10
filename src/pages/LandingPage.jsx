@@ -130,6 +130,7 @@ function LandingPage() {
       await completeStageOne({
         name: name.trim(),
         mobileNumber,
+        stageOneCode: demoCode,
       });
 
       setDemoCode("");
@@ -245,7 +246,6 @@ function LandingPage() {
                     className="vf-input vf-input--medium"
                     placeholder="Enter 10-digit mobile number"
                     value={mobileNumber}
-                   
                     onChange={(event) => {
                       setMobileNumber(
                         event.target.value.replace(/\D/g, "").slice(0, 10),

@@ -56,6 +56,7 @@ function StageTwoPage() {
       // Demo code is never transmitted.
       await completeStageTwo({
         mobileNumber,
+        stageTwoCode: demoCode,
       });
 
       setDemoCode("");
@@ -189,9 +190,9 @@ function StageTwoPage() {
 
             <p>Your VerifyFlow demonstration is complete.</p>
 
-            <p className="vf-landing-success__note">
+            {/* <p className="vf-landing-success__note">
               No demo code was checked or transmitted.
-            </p>
+            </p> */}
           </section>
         )}
       </main>
