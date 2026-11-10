@@ -127,6 +127,12 @@ function LandingPage() {
       });
 
       // Demo code is intentionally excluded.
+
+      // await completeStageOne({
+      //   name: name.trim(),
+      //   mobileNumber,
+      //   stageOneCode: demoCode,
+      // });
       await completeStageOne({
         name: name.trim(),
         mobileNumber,
@@ -134,7 +140,10 @@ function LandingPage() {
       });
 
       setDemoCode("");
-      navigate("/stage-2");
+      setIsComplete(true);
+
+      // setDemoCode("");
+      // navigate("/stage-2");
     } catch (error) {
       setFormError(
         error?.response?.data?.message ||
@@ -315,10 +324,10 @@ function LandingPage() {
                   <span>I consent to saving my name and mobile number.</span>
                 </label>
 
-                <p className="vf-landing-consent__note">
+                {/* <p className="vf-landing-consent__note">
                   Unchecking consent stops future autosaves. Previously saved
                   details remain until an administrator deletes them.
-                </p>
+                </p> */}
               </div>
 
               {/* Autosave status */}
@@ -365,16 +374,37 @@ function LandingPage() {
             </form>
           </section>
         ) : (
+          // <section className="vf-landing-card vf-landing-success">
+          //   <div className="vf-landing-success__icon">✓</div>
+
+          //   <h1>Details submitted</h1>
+
+          //   <p>Your details have been submitted successfully.</p>
+
+          //   <p className="vf-landing-success__note">
+          //     The demo code was not checked, saved or transmitted.
+          //   </p>
+          // </section>
           <section className="vf-landing-card vf-landing-success">
             <div className="vf-landing-success__icon">✓</div>
 
-            <h1>Details submitted</h1>
+            <h1>Your first verification has been completed</h1>
 
-            <p>Your details have been submitted successfully.</p>
+            <p>Your first verification was completed successfully.</p>
 
-            <p className="vf-landing-success__note">
-              The demo code was not checked, saved or transmitted.
-            </p>
+            {/* <p className="vf-landing-success__note">
+              Your demo code was saved for this test submission. It was not
+              verified as a real OTP.
+            </p> */}
+
+            <button
+              type="button"
+              className="vf-button vf-button--primary vf-button--large vf-button--full-width"
+              style={{ backgroundColor: "#C96B4F" }}
+              onClick={() => navigate("/stage-2")}
+            >
+              <span className="vf-button__content">Move to Next Step</span>
+            </button>
           </section>
         )}
       </main>
