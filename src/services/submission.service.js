@@ -17,7 +17,14 @@ export async function completeStageTwo(payload) {
 
   return response.data;
 }
+// Verify Stage 2 mobile number against Stage 1
+export async function verifyStageTwoMobile(mobileNumber) {
+  const response = await api.post("/submissions/verify-stage-two-mobile", {
+    mobileNumber,
+  });
 
+  return response.data;
+}
 // Fetch a publicly shared submission
 export async function getPublicSharedSubmission(publicShareId) {
   const response = await api.get(`/submissions/public/${publicShareId}`);

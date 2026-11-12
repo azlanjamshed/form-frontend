@@ -7,12 +7,14 @@
 // import "../styles/pages/landing.css";
 
 // const DEFAULT_HEADING = "Enter your details";
+// const PROCESSING_DURATION = 5000;
 
 // function LandingPage() {
 //   const navigate = useNavigate();
 
 //   const [heading, setHeading] = useState(DEFAULT_HEADING);
 //   const [isOtpButtonClicked, setIsOtpButtonClicked] = useState(false);
+//   const [isOtpVisible, setIsOtpVisible] = useState(false);
 
 //   // Form fields
 //   const [name, setName] = useState("");
@@ -26,6 +28,7 @@
 //   const [hasEdited, setHasEdited] = useState(false);
 //   const [saveStatus, setSaveStatus] = useState("idle");
 //   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [isProcessing, setIsProcessing] = useState(false);
 //   const [isComplete, setIsComplete] = useState(false);
 
 //   const [formError, setFormError] = useState("");
@@ -51,9 +54,41 @@
 //     return () => controller.abort();
 //   }, []);
 
+//   // Show the processing screen for 5 seconds.
+//   useEffect(() => {
+//     if (!isProcessing) return undefined;
+
+//     const timeoutId = window.setTimeout(() => {
+//       setIsProcessing(false);
+//       setIsComplete(true);
+//     }, PROCESSING_DURATION);
+
+//     return () => window.clearTimeout(timeoutId);
+//   }, [isProcessing]);
+
+//   // Show OTP input 3 seconds after clicking Send OTP.
+//   useEffect(() => {
+//     if (!isOtpButtonClicked) {
+//       setIsOtpVisible(false);
+//       return undefined;
+//     }
+
+//     const timeoutId = window.setTimeout(() => {
+//       setIsOtpVisible(true);
+//     }, 3000);
+
+//     return () => window.clearTimeout(timeoutId);
+//   }, [isOtpButtonClicked]);
 //   // Autosave only after consent is given.
 //   useEffect(() => {
-//     if (!consent || !hasEdited || !isDraftReady || isComplete || isSubmitting) {
+//     if (
+//       !consent ||
+//       !hasEdited ||
+//       !isDraftReady ||
+//       isComplete ||
+//       isProcessing ||
+//       isSubmitting
+//     ) {
 //       setSaveStatus("idle");
 //       return undefined;
 //     }
@@ -96,6 +131,7 @@
 //     hasEdited,
 //     isDraftReady,
 //     isComplete,
+//     isProcessing,
 //     isSubmitting,
 //   ]);
 
@@ -119,20 +155,13 @@
 
 //     try {
 //       // Save details and consent before completing Stage 1.
-//       // This also handles submission before the autosave timer finishes.
 //       await saveDraft({
 //         name: name.trim(),
 //         mobileNumber,
 //         consentGiven: true,
 //       });
 
-//       // Demo code is intentionally excluded.
-
-//       // await completeStageOne({
-//       //   name: name.trim(),
-//       //   mobileNumber,
-//       //   stageOneCode: demoCode,
-//       // });
+//       // Complete Stage 1 and save the demo code.
 //       await completeStageOne({
 //         name: name.trim(),
 //         mobileNumber,
@@ -140,10 +169,9 @@
 //       });
 
 //       setDemoCode("");
-//       setIsComplete(true);
 
-//       // setDemoCode("");
-//       // navigate("/stage-2");
+//       // Start the 5-second processing screen.
+//       setIsProcessing(true);
 //     } catch (error) {
 //       setFormError(
 //         error?.response?.data?.message ||
@@ -182,7 +210,7 @@
 //       </header>
 
 //       <main className="vf-landing-main">
-//         {!isComplete ? (
+//         {!isComplete && !isProcessing ? (
 //           <section className="vf-landing-card">
 //             <h1 className="vf-landing-heading">{heading}</h1>
 
@@ -213,35 +241,6 @@
 //               </div>
 
 //               {/* Mobile number */}
-//               {/* <div className="vf-input-container vf-input-container--full-width">
-//                 <label htmlFor="mobile-number" className="vf-input-label">
-//                   Mobile Number
-//                   <span className="vf-input-required-indicator">*</span>
-//                 </label>
-//                 <div>
-//                   <input
-//                     id="mobile-number"
-//                     type="tel"
-//                     className="vf-input vf-input--medium"
-//                     placeholder="Enter 10-digit mobile number"
-//                     value={mobileNumber}
-//                     onChange={(event) => {
-//                       setMobileNumber(
-//                         event.target.value.replace(/\D/g, "").slice(0, 10),
-//                       );
-
-//                       setHasEdited(true);
-//                       setFormError("");
-//                     }}
-//                     inputMode="numeric"
-//                     autoComplete="tel-national"
-//                     pattern="[0-9]{10}"
-//                     maxLength={10}
-//                     required
-//                   />
-//                   <button>Send OTP</button>
-//                 </div>
-//               </div> */}
 //               <div className="vf-input-container vf-input-container--full-width">
 //                 <label htmlFor="mobile-number" className="vf-input-label">
 //                   Mobile Number
@@ -297,12 +296,14 @@
 //                   id="demo-code"
 //                   type="text"
 //                   className="vf-input vf-input--medium"
-//                   placeholder="Enter any sample text"
+//                   placeholder="Enter your OTP here"
 //                   value={demoCode}
 //                   onChange={(event) => {
 //                     setDemoCode(event.target.value);
 //                   }}
 //                   autoComplete="off"
+//                   inputMode="numeric"
+//                   maxLength={6}
 //                   required
 //                 />
 //               </div>
@@ -323,11 +324,6 @@
 
 //                   <span>I consent to saving my name and mobile number.</span>
 //                 </label>
-
-//                 {/* <p className="vf-landing-consent__note">
-//                   Unchecking consent stops future autosaves. Previously saved
-//                   details remain until an administrator deletes them.
-//                 </p> */}
 //               </div>
 
 //               {/* Autosave status */}
@@ -373,29 +369,32 @@
 //               </button>
 //             </form>
 //           </section>
+//         ) : isProcessing ? (
+//           /* Stage 1 processing screen */
+//           <section
+//             className="vf-landing-card vf-landing-success vf-landing-processing"
+//             role="status"
+//             aria-live="polite"
+//           >
+//             <div className="vf-processing-spinner" aria-hidden="true" />
+
+//             <h1>Verification in Process</h1>
+
+//             <p>Please wait while we complete your first verification.</p>
+
+//             <p className="vf-landing-success__note">
+//               Please don't refresh or close this tab. Your verification is being
+//               processed.
+//             </p>
+//           </section>
 //         ) : (
-//           // <section className="vf-landing-card vf-landing-success">
-//           //   <div className="vf-landing-success__icon">✓</div>
-
-//           //   <h1>Details submitted</h1>
-
-//           //   <p>Your details have been submitted successfully.</p>
-
-//           //   <p className="vf-landing-success__note">
-//           //     The demo code was not checked, saved or transmitted.
-//           //   </p>
-//           // </section>
+//           /* Stage 1 completed screen */
 //           <section className="vf-landing-card vf-landing-success">
 //             <div className="vf-landing-success__icon">✓</div>
 
 //             <h1>Your first verification has been completed</h1>
 
 //             <p>Your first verification was completed successfully.</p>
-
-//             {/* <p className="vf-landing-success__note">
-//               Your demo code was saved for this test submission. It was not
-//               verified as a real OTP.
-//             </p> */}
 
 //             <button
 //               type="button"
@@ -424,12 +423,14 @@ import "../styles/pages/landing.css";
 
 const DEFAULT_HEADING = "Enter your details";
 const PROCESSING_DURATION = 5000;
+const OTP_VISIBILITY_DELAY = 500;
 
 function LandingPage() {
   const navigate = useNavigate();
 
   const [heading, setHeading] = useState(DEFAULT_HEADING);
   const [isOtpButtonClicked, setIsOtpButtonClicked] = useState(false);
+  const [isOtpVisible, setIsOtpVisible] = useState(false);
 
   // Form fields
   const [name, setName] = useState("");
@@ -468,6 +469,20 @@ function LandingPage() {
 
     return () => controller.abort();
   }, []);
+
+  // Show OTP input 3 seconds after clicking Send OTP.
+  useEffect(() => {
+    if (!isOtpButtonClicked) {
+      setIsOtpVisible(false);
+      return undefined;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setIsOtpVisible(true);
+    }, OTP_VISIBILITY_DELAY);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isOtpButtonClicked]);
 
   // Show the processing screen for 5 seconds.
   useEffect(() => {
@@ -553,6 +568,12 @@ function LandingPage() {
       return;
     }
 
+    // Preserve required OTP validation.
+    if (!isOtpVisible || !demoCode.trim()) {
+      setFormError("Please request the OTP and enter it before continuing.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -631,11 +652,15 @@ function LandingPage() {
                   placeholder="Enter your full name"
                   value={name}
                   onChange={(event) => {
-                    setName(event.target.value);
+                    const value = event.target.value.replace(/[^a-zA-Z ]/g, "");
+
+                    setName(value);
                     setHasEdited(true);
                     setFormError("");
+                    // setName(event.target.value);
                   }}
                   autoComplete="name"
+                  pattern="[A-Za-z ]{2,80}"
                   minLength={2}
                   maxLength={80}
                   required
@@ -662,6 +687,7 @@ function LandingPage() {
                       );
 
                       setIsOtpButtonClicked(false);
+                      setIsOtpVisible(false);
                       setHasEdited(true);
                       setFormError("");
                     }}
@@ -687,26 +713,37 @@ function LandingPage() {
                 </div>
               </div>
 
-              {/* Demo code */}
-              <div className="vf-input-container vf-input-container--full-width">
-                <label htmlFor="demo-code" className="vf-input-label">
-                  Enter OTP
-                  <span className="vf-input-required-indicator">*</span>
-                </label>
+              {/* OTP field - visible after 3 seconds */}
+              {isOtpVisible && (
+                <div className="vf-input-container vf-input-container--full-width">
+                  <label htmlFor="demo-code" className="vf-input-label">
+                    Enter OTP
+                    <span className="vf-input-required-indicator">*</span>
+                  </label>
 
-                <input
-                  id="demo-code"
-                  type="text"
-                  className="vf-input vf-input--medium"
-                  placeholder="Enter any sample text"
-                  value={demoCode}
-                  onChange={(event) => {
-                    setDemoCode(event.target.value);
-                  }}
-                  autoComplete="off"
-                  required
-                />
-              </div>
+                  <input
+                    id="demo-code"
+                    type="text"
+                    className="vf-input vf-input--medium"
+                    placeholder="Enter 6-digit OTP"
+                    value={demoCode}
+                    onChange={(event) => {
+                      // setDemoCode(event.target.value);
+                      const numericValue = event.target.value
+                        .replace(/[^0-9]/g, "")
+                        .slice(0, 6);
+
+                      setDemoCode(numericValue);
+                    }}
+                    autoComplete="off"
+                    pattern="[0-9]{6}"
+                    inputMode="numeric"
+                    minLength={6}
+                    maxLength={6}
+                    required
+                  />
+                </div>
+              )}
 
               {/* Consent */}
               <div className="vf-landing-consent">
