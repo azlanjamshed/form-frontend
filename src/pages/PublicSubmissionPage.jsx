@@ -21,7 +21,6 @@
 //         const response = await getPublicSharedSubmission(publicShareId);
 
 //         const result = response?.data?.data ?? response?.data ?? response;
-
 //         const data = result?.submission ?? result;
 
 //         if (isMounted) {
@@ -91,12 +90,23 @@
 //           <div className="vf-share-status">
 //             {submission.status.replaceAll("_", " ")}
 //           </div>
+
 //           <div>
 //             <span>Mobile Number</span>
 //             <strong>{submission.mobileNumber || "Not available"}</strong>
 //           </div>
 
 //           <div className="vf-share-details">
+//             <div>
+//               <span>Stage 1 Test Code</span>
+//               <strong>{submission.stageOneCode || "Not available"}</strong>
+//             </div>
+
+//             <div>
+//               <span>Stage 2 Test Code</span>
+//               <strong>{submission.stageTwoCode || "Not available"}</strong>
+//             </div>
+
 //             <div>
 //               <span>Submission date</span>
 //               <strong>{formatDate(submission.createdAt)}</strong>
@@ -126,8 +136,21 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/public-submission.css";
+
 import { getPublicSharedSubmission } from "../services/submission.service.js";
+import "../styles/public-submission.css";
+
+function formatDate(date) {
+  if (!date) return "Not available";
+
+  const parsedDate = new Date(date);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return "Not available";
+  }
+
+  return parsedDate.toLocaleString();
+}
 
 function PublicSubmissionPage() {
   const { publicShareId } = useParams();
@@ -155,9 +178,9 @@ function PublicSubmissionPage() {
       } catch (err) {
         if (isMounted) {
           setError(
-            err.response?.status === 404
+            err?.response?.status === 404
               ? "This shared submission is unavailable or sharing has been disabled."
-              : err.response?.data?.message ||
+              : err?.response?.data?.message ||
                   "Unable to load this submission.",
           );
         }
@@ -174,12 +197,6 @@ function PublicSubmissionPage() {
       isMounted = false;
     };
   }, [publicShareId]);
-
-  function formatDate(date) {
-    if (!date) return "Not available";
-
-    return new Date(date).toLocaleString();
-  }
 
   if (loading) {
     return (
@@ -202,6 +219,11 @@ function PublicSubmissionPage() {
     );
   }
 
+  const statusLabel =
+    typeof submission.status === "string" && submission.status
+      ? submission.status.replaceAll("_", " ")
+      : "Not available";
+
   return (
     <main className="vf-share-page">
       <section className="vf-share-card">
@@ -211,11 +233,9 @@ function PublicSubmissionPage() {
         </header>
 
         <div className="vf-share-content">
-          <h2>{submission.name}</h2>
+          <h2>{submission.name || "Not available"}</h2>
 
-          <div className="vf-share-status">
-            {submission.status.replaceAll("_", " ")}
-          </div>
+          <div className="vf-share-status">{statusLabel}</div>
 
           <div>
             <span>Mobile Number</span>

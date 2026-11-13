@@ -115,22 +115,6 @@
   padding: var(--spacing-12) var(--spacing-4);
 }
 
-/* ============================================
-   FORM CARD
-============================================ */
-
-.vf-landing-card {
-  width: 100%;
-  max-width: 460px;
-
-  padding: clamp(24px, 5vw, 36px);
-
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-card);
-  box-shadow: none;
-}
-
 .vf-landing-heading {
   margin: 0 0 var(--spacing-8);
 
@@ -141,24 +125,6 @@
   letter-spacing: var(--letter-spacing-tight);
 
   overflow-wrap: anywhere;
-}
-
-/* INTRO */
-
-.vf-landing-intro {
-  margin-bottom: var(--spacing-6);
-}
-
-.vf-landing-intro .vf-landing-heading {
-  margin-bottom: 6px;
-}
-
-.vf-landing-subtitle {
-  margin: 0;
-
-  color: var(--vf-muted);
-  font-size: 13px;
-  line-height: 1.5;
 }
 
 /* ============================================
@@ -186,14 +152,6 @@
 .vf-landing-page .vf-input-required-indicator {
   margin-left: 3px;
   color: var(--vf-primary);
-}
-
-.vf-landing-optional {
-  margin-left: var(--spacing-2);
-
-  color: var(--vf-muted);
-  font-size: var(--font-size-small);
-  font-weight: var(--font-weight-regular);
 }
 
 /* ============================================
@@ -297,23 +255,6 @@
 }
 
 /* ============================================
-   DEMO MODE MESSAGE
-============================================ */
-
-.vf-landing-demo-note {
-  margin-top: -10px;
-  padding: 10px 12px;
-
-  background: var(--vf-demo-bg);
-  border: 1px solid var(--vf-demo-border);
-  border-radius: 10px;
-
-  color: var(--vf-demo-text);
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-/* ============================================
    CONSENT
 ============================================ */
 
@@ -346,14 +287,6 @@
 
   accent-color: var(--vf-primary);
   cursor: pointer;
-}
-
-.vf-landing-consent__note {
-  margin: var(--spacing-2) 0 0 30px;
-
-  color: var(--vf-muted);
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-normal);
 }
 
 /* ============================================
@@ -461,10 +394,6 @@
 
   .vf-landing-header__inner {
     width: calc(100% - 32px);
-  }
-
-  .vf-landing-card {
-    padding: 24px 20px;
   }
 
   .vf-mobile-input-row {
@@ -688,4 +617,36 @@
     padding: 30px 22px;
     border-radius: 18px;
   }
+}
+
+.vf-password-field {
+  position: relative;
+  width: 100%;
+}
+
+.vf-password-field .vf-input {
+  width: 100%;
+  padding-right: 50px;
+}
+
+.vf-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.vf-password-toggle:hover {
+  color: black;
 }
