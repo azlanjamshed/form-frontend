@@ -14,7 +14,7 @@ import {
 
 import "../styles/pages/landing.css";
 
-const DEFAULT_HEADING = "Confirm your mobile number";
+const DEFAULT_HEADING = "Verify your mobile number";
 
 const OTP_VISIBILITY_DELAY = 500;
 const PROCESSING_DURATION = 2500;

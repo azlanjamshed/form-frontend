@@ -11,7 +11,7 @@ import StageOneCompleted from "../components/stage-one/StageOneCompleted.jsx";
 
 import "../styles/pages/landing.css";
 
-const DEFAULT_HEADING = "Enter your details";
+const DEFAULT_HEADING = "Welcome to";
 const PROCESSING_DURATION = 3000;
 const OTP_VISIBILITY_DELAY = 500;
 const AUTOSAVE_DELAY = 700;
