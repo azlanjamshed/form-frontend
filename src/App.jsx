@@ -7,6 +7,12 @@ import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage.jsx";
 import AdminRoute from "./components/admin/AdminRoute.jsx";
 
+import CollectorLoginPage from "./pages/collector/CollectorLoginPage.jsx";
+import CollectorDashboardPage from "./pages/collector/CollectorDashboardPage.jsx";
+import CollectorRoute from "./components/collector/CollectorRoute.jsx";
+
+import CollectorChangePasswordPage from "./pages/collector/CollectorChangePasswordPage.jsx";
+
 import PublicSubmissionPage from "./pages/PublicSubmissionPage.jsx";
 
 function App() {
@@ -26,6 +32,22 @@ function App() {
         {/* Protected admin routes */}
         <Route element={<AdminRoute />}>
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+        </Route>
+
+        {/* Collector login */}
+        <Route path="/collector/login" element={<CollectorLoginPage />} />
+
+        {/* Protected collector routes */}
+        {/* Protected collector routes */}
+        <Route element={<CollectorRoute />}>
+          <Route
+            path="/collector/dashboard"
+            element={<CollectorDashboardPage />}
+          />
+          <Route
+            path="/collector/change-password"
+            element={<CollectorChangePasswordPage />}
+          />
         </Route>
 
         {/* Fallback */}

@@ -10,9 +10,13 @@ function AdminRoute() {
     let isMounted = true;
 
     getCurrentAdmin()
-      .then(() => {
+      .then((response) => {
+        const user = response?.data?.user ?? response?.user;
+
         if (isMounted) {
-          setAuthStatus("authenticated");
+          setAuthStatus(
+            user?.role === "admin" ? "authenticated" : "unauthorized",
+          );
         }
       })
       .catch(() => {
@@ -40,6 +44,10 @@ function AdminRoute() {
 
   if (authStatus === "unauthenticated") {
     return <Navigate to="/admin/login" replace />;
+  }
+
+  if (authStatus === "unauthorized") {
+    return <Navigate to="/collector/dashboard" replace />;
   }
 
   return <Outlet />;

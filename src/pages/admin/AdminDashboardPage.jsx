@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import AdminPageConfig from "../../components/admin/AdminPageConfig.jsx";
 import AdminSubmissions from "../../components/admin/AdminSubmissions.jsx";
+import AdminCollectors from "../../components/admin/AdminCollectors.jsx";
 
 import {
   getAdminSubmissions,
@@ -180,6 +181,9 @@ function AdminDashboardPage() {
 
         {/* Public Form Configuration */}
         <AdminPageConfig />
+
+        {/* Collector Management */}
+        <AdminCollectors />
 
         {/* Submissions */}
         <AdminSubmissions

@@ -4,184 +4,221 @@
 
 .vf-admin-page {
     min-height: 100vh;
-    background: #f5f6fa;
-    color: #1f2937;
-    font-family: Arial, sans-serif;
+    background: var(--color-background);
+    color: var(--color-text-main);
+    font-family: var(--font-family);
 }
 
-/* ========================================
-   HEADER
-======================================== */
+/* HEADER */
 
 .vf-admin-header {
     min-height: 72px;
-    padding: 0 5%;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 0 max(5%, calc((100% - var(--container-width)) / 2));
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-4);
 }
 
 .vf-admin-header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #4f3de6;
-}
-
-.vf-admin-header button,
-.vf-admin-filters button {
-    border: none;
-    border-radius: 7px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.2s ease;
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
 }
 
 .vf-admin-header button {
-    background: #fee2e2;
-    color: #b91c1c;
+    min-height: 40px;
+    padding: 0 var(--spacing-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-error);
+    font: inherit;
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
 .vf-admin-header button:hover {
-    background: #fecaca;
+    background: var(--color-background);
+    border-color: var(--color-error);
 }
 
-/* ========================================
-   MAIN LAYOUT
-======================================== */
+/* MAIN LAYOUT */
 
 .vf-admin-main {
-    width: min(1200px, 90%);
-    margin: 35px auto;
+    width: min(var(--container-width), 92%);
+    margin: var(--spacing-10) auto;
 }
 
 .vf-admin-heading {
-    margin-bottom: 25px;
+    margin-bottom: var(--spacing-6);
 }
 
 .vf-admin-heading h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
+    margin: 0 0 var(--spacing-2);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
 }
 
 .vf-admin-heading p {
-    color: #6b7280;
-    font-size: 14px;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
 }
 
-/* ========================================
-   SHARED ADMIN PANEL
-======================================== */
+/* SHARED ADMIN PANEL */
 
 .vf-admin-panel {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin-bottom: var(--spacing-6);
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
 }
 
 .vf-admin-panel h3 {
-    font-size: 19px;
-    margin-bottom: 22px;
+    margin: 0 0 var(--spacing-2);
+    color: var(--color-text-main);
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-semibold);
 }
 
-/* ========================================
-   FILTERS AND FORMS
-======================================== */
+.vf-admin-panel>p {
+    margin: 0 0 var(--spacing-5);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body);
+}
+
+/* CONFIGURATION FORM */
 
 .vf-admin-filters {
     display: flex;
-    gap: 12px;
-    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-5);
 }
 
 .vf-admin-filters input,
 .vf-admin-filters select {
-    min-height: 42px;
-    padding: 0 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    background: #ffffff;
-    font-size: 13px;
+    min-height: var(--input-height);
+    padding: 0 var(--spacing-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    color: var(--color-text-main);
+    font-family: var(--font-family);
+    font-size: var(--font-size-body-sm);
     outline: none;
+    transition: var(--transition-fast);
 }
 
 .vf-admin-filters input {
     flex: 1;
-    min-width: 180px;
+    min-width: 200px;
 }
 
 .vf-admin-filters input:focus,
 .vf-admin-filters select:focus {
-    border-color: #4f3de6;
-    box-shadow: 0 0 0 3px rgba(79, 61, 230, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
 .vf-admin-filters button {
-    background: #4f3de6;
+    min-height: var(--button-height);
+    padding: 0 var(--spacing-5);
+    border: none;
+    border-radius: var(--radius-control);
+    background: var(--color-primary);
     color: #ffffff;
+    font-family: var(--font-family);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-.vf-admin-filters button:hover {
-    background: #4332d1;
+.vf-admin-filters button:hover:not(:disabled) {
+    background: var(--color-primary-hover);
 }
 
-/* ========================================
-   NOTIFICATIONS
-======================================== */
+.vf-admin-filters button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* NOTIFICATIONS */
 
 .vf-admin-notice,
 .vf-admin-error {
-    padding: 12px 15px;
-    margin-bottom: 18px;
-    border-radius: 7px;
-    font-size: 13px;
+    padding: var(--spacing-3) var(--spacing-4);
+    margin: 0 0 var(--spacing-4);
+    border-radius: var(--radius-control);
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body);
 }
 
 .vf-admin-notice {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--color-success-light, #F0FDF4);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
 }
 
 .vf-admin-error {
-    background: #fee2e2;
-    color: #b91c1c;
+    background: #FEF2F2;
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
 }
 
-/* ========================================
-   RESPONSIVE LAYOUT
-======================================== */
+/* RESPONSIVE */
 
-@media (max-width: 650px) {
-    .vf-admin-header {
-        padding: 0 5%;
-    }
-
-    .vf-admin-header h1 {
-        font-size: 18px;
-    }
-
+@media (max-width: 768px) {
     .vf-admin-main {
-        width: 92%;
-        margin: 24px auto;
+        width: 94%;
+        margin: var(--spacing-6) auto;
     }
 
     .vf-admin-panel {
-        padding: 16px;
+        padding: var(--spacing-5);
+    }
+}
+
+@media (max-width: 650px) {
+    .vf-admin-header {
+        min-height: 64px;
+        padding: 0 4%;
+    }
+
+    .vf-admin-header h1 {
+        font-size: var(--font-size-h4);
+    }
+
+    .vf-admin-heading h2 {
+        font-size: var(--font-size-h3);
+    }
+
+    .vf-admin-panel {
+        padding: var(--spacing-4);
     }
 
     .vf-admin-filters {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .vf-admin-filters input,
     .vf-admin-filters select,
     .vf-admin-filters button {
         width: 100%;
-        min-height: 44px;
+        min-height: var(--input-height);
     }
 }

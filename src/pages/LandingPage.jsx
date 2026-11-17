@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { getPublicPageConfig } from "../services/pageConfig.service.js";
 import { saveDraft, completeStageOne } from "../services/submission.service.js";
@@ -19,6 +20,8 @@ const AUTOSAVE_DELAY = 700;
 function LandingPage() {
   const navigate = useNavigate();
 
+  const [searchParams] = useSearchParams();
+  const formShareId = searchParams.get("collector") || "";
   // Page configuration
   const [heading, setHeading] = useState(DEFAULT_HEADING);
 
@@ -118,6 +121,7 @@ function LandingPage() {
             name: name.trim(),
             mobileNumber,
             consentGiven: true,
+            formShareId,
           },
           controller.signal,
         );
@@ -145,6 +149,7 @@ function LandingPage() {
     isComplete,
     isProcessing,
     isSubmitting,
+    formShareId,
   ]);
 
   // Handle Stage 1 submission.
@@ -176,8 +181,8 @@ function LandingPage() {
         name: name.trim(),
         mobileNumber,
         consentGiven: true,
+        formShareId,
       });
-
       // Complete Stage 1 and save the demo code.
       await completeStageOne({
         name: name.trim(),

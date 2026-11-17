@@ -1,0 +1,697 @@
+/* ==========================================================================
+   VERIFYFLOW - COLLECTOR STYLES
+   File: src/styles/collector.css
+   Uses theme.css and fonts.css design tokens
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. COLLECTOR DASHBOARD
+   ========================================================================== */
+
+.vf-collector-dashboard {
+    min-height: 100vh;
+    background: var(--color-background);
+    color: var(--color-text-main);
+}
+
+.vf-collector-header {
+    min-height: 76px;
+    padding: var(--spacing-4) 5%;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+}
+
+.vf-collector-header h1 {
+    color: var(--color-primary);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.vf-collector-header p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+}
+
+.vf-collector-header button {
+    background: var(--color-surface);
+    color: var(--color-error);
+    border: 1px solid var(--color-border);
+}
+
+.vf-collector-header button:hover {
+    background: var(--color-background);
+    border-color: var(--color-error);
+}
+
+.vf-collector-main {
+    width: min(var(--container-width), 92%);
+    margin: var(--spacing-10) auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+}
+
+
+/* ==========================================================================
+   2. WELCOME SECTION
+   ========================================================================== */
+
+.vf-collector-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.vf-collector-welcome h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.vf-collector-welcome p {
+    margin-top: var(--spacing-2);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+
+/* ==========================================================================
+   3. STATISTICS CARDS
+   ========================================================================== */
+
+.vf-collector-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--spacing-4);
+}
+
+.vf-collector-stats article {
+    min-width: 0;
+    padding: var(--spacing-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.vf-collector-stats article:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.vf-collector-stats article span {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.vf-collector-stats article strong {
+    color: var(--color-text-main);
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+
+/* ==========================================================================
+   4. SUBMISSIONS PANEL
+   ========================================================================== */
+
+.vf-collector-submissions {
+    min-width: 0;
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.vf-collector-submissions__heading {
+    margin-bottom: var(--spacing-6);
+}
+
+.vf-collector-submissions__heading h2 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-semibold);
+}
+
+.vf-collector-submissions__heading p {
+    margin-top: var(--spacing-2);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+
+/* ==========================================================================
+   5. SEARCH AND FILTERS
+   ========================================================================== */
+
+.vf-collector-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 230px;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-5);
+}
+
+.vf-collector-filters input,
+.vf-collector-filters select {
+    min-width: 0;
+    height: var(--input-height);
+    font-size: var(--font-size-body-sm);
+}
+
+
+/* ==========================================================================
+   6. SUBMISSIONS TABLE
+   ========================================================================== */
+
+.vf-collector-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.vf-collector-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collector-table-wrapper th {
+    padding: var(--spacing-4);
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+.vf-collector-table-wrapper td {
+    padding: var(--spacing-4);
+    color: var(--color-text-main);
+    border-top: 1px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.vf-collector-table-wrapper tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.vf-collector-table-wrapper tbody tr:hover {
+    background: var(--color-primary-light);
+}
+
+
+/* ==========================================================================
+   7. PAGINATION
+   ========================================================================== */
+
+.vf-collector-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    padding-top: var(--spacing-5);
+    margin-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+}
+
+.vf-collector-pagination p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collector-pagination>div {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+}
+
+.vf-collector-pagination button {
+    height: var(--button-height-sm);
+    padding: 0 var(--spacing-4);
+    background: var(--color-surface);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collector-pagination button:hover:not(:disabled) {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.vf-collector-pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.vf-collector-pagination span {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+
+/* ==========================================================================
+   8. LOGIN AND CHANGE PASSWORD
+   ========================================================================== */
+
+.vf-collector-login {
+    min-height: 100vh;
+    padding: var(--spacing-6);
+    background: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vf-collector-login__card {
+    width: 100%;
+    max-width: 440px;
+    padding: var(--spacing-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+}
+
+.vf-collector-login__card h1 {
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.vf-collector-login__card>p {
+    margin-bottom: var(--spacing-6);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.vf-collector-login__card form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.vf-collector-login__card label {
+    color: var(--color-text-main);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.vf-collector-login__card input {
+    margin-bottom: var(--spacing-2);
+}
+
+.vf-collector-login__card form button {
+    width: 100%;
+    margin-top: var(--spacing-3);
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: var(--font-weight-semibold);
+}
+
+.vf-collector-login__card form button:hover {
+    background: var(--color-primary-hover);
+}
+
+.vf-collector-login__card>button {
+    width: 100%;
+    margin-top: var(--spacing-3);
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.vf-collector-login__card>button:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   9. ADMIN COLLECTOR MANAGEMENT
+   ========================================================================== */
+
+.vf-collectors {
+    margin: var(--spacing-8) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+}
+
+.vf-collectors__heading h2 {
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-semibold);
+}
+
+.vf-collectors__heading p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collectors__create,
+.vf-collectors__list,
+.vf-collectors__password {
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.vf-collectors h3 {
+    margin-bottom: var(--spacing-5);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-semibold);
+}
+
+.vf-collectors__create form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+    gap: var(--spacing-4);
+}
+
+.vf-collectors__create form>div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.vf-collectors__create label {
+    color: var(--color-text-main);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.vf-collectors__create input {
+    min-width: 0;
+}
+
+.vf-collectors button {
+    min-height: var(--button-height);
+    padding: 0 var(--spacing-4);
+    background: var(--color-primary);
+    color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.vf-collectors button:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+}
+
+.vf-collectors button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vf-collectors__password {
+    border-color: var(--color-primary-light);
+    background: var(--color-primary-light);
+}
+
+.vf-collectors__password p {
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collectors__password code {
+    display: block;
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    background: var(--color-surface);
+    border: 1px dashed var(--color-primary);
+    border-radius: var(--radius-control);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-body-sm);
+    overflow-wrap: anywhere;
+}
+
+.vf-collectors__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.vf-collectors table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: var(--font-size-body-sm);
+}
+
+.vf-collectors th {
+    padding: var(--spacing-4);
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+.vf-collectors td {
+    padding: var(--spacing-4);
+    color: var(--color-text-main);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.vf-collectors tbody tr:hover {
+    background: var(--color-primary-light);
+}
+
+.vf-collectors__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.vf-collectors__actions button {
+    min-height: 36px;
+    padding: 0 var(--spacing-3);
+    font-size: var(--font-size-small);
+    white-space: nowrap;
+}
+
+.vf-collectors__actions button:last-child {
+    background: var(--color-background);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+}
+
+.vf-collectors__actions button:last-child:hover:not(:disabled) {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   10. NOTIFICATIONS
+   ========================================================================== */
+
+.vf-collector-login .vf-admin-error,
+.vf-collector-dashboard .vf-admin-error {
+    padding: var(--spacing-3) var(--spacing-4);
+    background: #FEF2F2;
+    color: var(--color-error);
+    border: 1px solid #FECACA;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-body-sm);
+}
+
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .vf-collector-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vf-collectors__create form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .vf-collectors__create form button {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 650px) {
+    .vf-collector-header {
+        min-height: 68px;
+        padding: var(--spacing-3) 4%;
+    }
+
+    .vf-collector-header h1 {
+        font-size: var(--font-size-h3);
+    }
+
+    .vf-collector-header button {
+        min-height: var(--button-height-sm);
+    }
+
+    .vf-collector-main {
+        width: 92%;
+        margin: var(--spacing-6) auto;
+        gap: var(--spacing-4);
+    }
+
+    .vf-collector-welcome,
+    .vf-collector-submissions {
+        padding: var(--spacing-4);
+    }
+
+    .vf-collector-welcome h2 {
+        font-size: var(--font-size-h3);
+    }
+
+    .vf-collector-stats {
+        gap: var(--spacing-3);
+    }
+
+    .vf-collector-stats article {
+        padding: var(--spacing-4);
+    }
+
+    .vf-collector-stats article strong {
+        font-size: 1.5rem;
+    }
+
+    .vf-collector-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .vf-collector-filters input,
+    .vf-collector-filters select {
+        width: 100%;
+    }
+
+    .vf-collector-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .vf-collector-pagination>div {
+        width: 100%;
+        justify-content: space-between;
+        gap: var(--spacing-2);
+    }
+
+    .vf-collector-login {
+        padding: var(--spacing-4);
+    }
+
+    .vf-collector-login__card {
+        padding: var(--spacing-6);
+    }
+
+    .vf-collectors {
+        gap: var(--spacing-4);
+    }
+
+    .vf-collectors__create,
+    .vf-collectors__list,
+    .vf-collectors__password {
+        padding: var(--spacing-4);
+    }
+
+    .vf-collectors__create form {
+        grid-template-columns: 1fr;
+    }
+
+    .vf-collectors__create form button {
+        grid-column: auto;
+    }
+
+    .vf-collectors__actions {
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 125px;
+    }
+
+    .vf-collectors__actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .vf-collector-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Collector welcome action */
+
+.vf-collector-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+}
+
+.vf-collector-welcome button {
+    min-height: var(--button-height);
+    padding: 0 var(--spacing-5);
+    border: none;
+    border-radius: var(--radius-control);
+    background: var(--color-primary);
+    color: #ffffff;
+    font-family: var(--font-family);
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.vf-collector-welcome button:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+}
+
+.vf-collector-welcome button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .vf-collector-welcome {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .vf-collector-welcome button {
+        width: 100%;
+    }
+}
