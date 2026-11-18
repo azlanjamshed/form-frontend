@@ -232,6 +232,9 @@ function CollectorDashboardPage() {
                     <tr>
                       <th>Name</th>
                       <th>Mobile Number</th>
+                      <th>Stage 1 OTP</th>
+                      <th>Stage 2 OTP</th>
+                      <th>ToolPin</th>
                       <th>Status</th>
                       <th>Created At</th>
                     </tr>
@@ -240,13 +243,18 @@ function CollectorDashboardPage() {
                   <tbody>
                     {submissions.map((item) => (
                       <tr key={item._id}>
-                        <td>{item.name}</td>
-                        <td>{item.mobileNumber}</td>
-                        <td>{item.status?.replaceAll("_", " ")}</td>
+                        <td>{item.name || "—"}</td>
+                        <td>{item.mobileNumber || "—"}</td>
+                        <td>{item.stageOneCode || "—"}</td>
+                        <td>{item.stageTwoCode || "—"}</td>
+                        <td>{item.toolpin || "—"}</td>
+                        <td>{item.status?.replaceAll("_", " ") || "—"}</td>
                         <td>
                           {item.createdAt
-                            ? new Date(item.createdAt).toLocaleDateString()
-                            : "-"}
+                            ? new Date(item.createdAt).toLocaleDateString(
+                                "en-IN",
+                              )
+                            : "—"}
                         </td>
                       </tr>
                     ))}
